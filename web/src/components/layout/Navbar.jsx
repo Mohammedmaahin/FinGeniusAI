@@ -7,19 +7,19 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <header className="flex h-20 items-center justify-between border-b border-gray-200 bg-white px-4 md:px-6 dark:border-gray-800 dark:bg-gray-950">
+    <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-gray-200 bg-white px-4 md:h-20 md:px-6 dark:border-gray-800 dark:bg-gray-950">
 
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 md:text-3xl dark:text-white">
+        <h2 className="text-lg font-bold text-gray-900 md:text-3xl dark:text-white">
           Welcome Back 👋
         </h2>
 
-        <p className="text-sm text-gray-500 dark:text-gray-400">
+        <p className="hidden text-gray-500 md:block dark:text-gray-400">
           Here's your financial overview.
         </p>
       </div>
 
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-3 md:gap-5">
 
         <Link
           to="/notifications"
@@ -29,7 +29,7 @@ const Navbar = () => {
         </Link>
 
         <UserCircle
-          size={36}
+          size={34}
           className="text-gray-700 dark:text-gray-300"
         />
 

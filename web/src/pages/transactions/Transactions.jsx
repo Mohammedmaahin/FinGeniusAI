@@ -14,6 +14,7 @@ import {
 
 import TransactionTable from "../../components/transactions/TransactionTable";
 import TransactionModal from "../../components/transactions/TransactionModal";
+import MobileBottomNav from "../../components/layout/MobileBottomNav";
 
 const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
@@ -81,7 +82,7 @@ const Transactions = () => {
       <main className="flex-1">
         <Navbar />
 
-        <div className="p-8">
+        <div className="p-4 pb-24 md:p-8">
           <div className="mb-8 flex items-center justify-between">
             <div>
               <h1 className="text-4xl font-bold text-white">
@@ -120,6 +121,7 @@ const Transactions = () => {
             setEditing(null);
           }}
         />
+        <MobileBottomNav />
       </main>
     </div>
   );

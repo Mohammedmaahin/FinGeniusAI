@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import Sidebar from "../../components/layout/Sidebar";
 import Navbar from "../../components/layout/Navbar";
+import MobileBottomNav from "../../components/layout/MobileBottomNav";
 
 import {
   getGoals,
@@ -46,7 +47,6 @@ const Goals = () => {
       setEditing(null);
 
       loadGoals();
-
     } catch (err) {
       console.error(err);
       alert("Failed to save goal.");
@@ -54,14 +54,15 @@ const Goals = () => {
   };
 
   const handleDelete = async (id) => {
+    if (!window.confirm("Delete goal?")) return;
 
-    if (!window.confirm("Delete goal?"))
-      return;
-
-    await deleteGoal(id);
-
-    loadGoals();
-
+    try {
+      await deleteGoal(id);
+      loadGoals();
+    } catch (err) {
+      console.error(err);
+      alert("Failed to delete goal.");
+    }
   };
 
   return (
@@ -73,17 +74,17 @@ const Goals = () => {
 
         <Navbar />
 
-        <div className="p-8">
+        <div className="space-y-6 p-4 pb-24 md:p-8">
 
-          <div className="mb-8 flex items-center justify-between">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 
             <div>
 
-              <h1 className="text-4xl font-bold text-white">
+              <h1 className="text-2xl font-bold text-white md:text-4xl">
                 Goals
               </h1>
 
-              <p className="text-gray-400">
+              <p className="mt-2 text-sm text-gray-400 md:text-base">
                 Track your financial goals.
               </p>
 
@@ -94,30 +95,48 @@ const Goals = () => {
                 setEditing(null);
                 setOpen(true);
               }}
-              className="rounded-xl bg-blue-600 px-5 py-3 text-white"
+              className="w-full rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-700 md:w-auto"
             >
               + Add Goal
             </button>
 
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {goals.length === 0 ? (
 
-            {goals.map((goal) => (
+            <div className="rounded-3xl border border-dashed border-gray-700 bg-[#111827] p-10 text-center">
 
-              <GoalCard
-                key={goal.id}
-                goal={goal}
-                onEdit={(goal) => {
-                  setEditing(goal);
-                  setOpen(true);
-                }}
-                onDelete={handleDelete}
-              />
+              <h2 className="text-xl font-semibold text-white">
+                No Goals Yet
+              </h2>
 
-            ))}
+              <p className="mt-3 text-gray-400">
+                Create your first financial goal to start tracking your progress.
+              </p>
 
-          </div>
+            </div>
+
+          ) : (
+
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+
+              {goals.map((goal) => (
+
+                <GoalCard
+                  key={goal.id}
+                  goal={goal}
+                  onEdit={(goal) => {
+                    setEditing(goal);
+                    setOpen(true);
+                  }}
+                  onDelete={handleDelete}
+                />
+
+              ))}
+
+            </div>
+
+          )}
 
         </div>
 
@@ -130,6 +149,8 @@ const Goals = () => {
             setEditing(null);
           }}
         />
+
+        <MobileBottomNav />
 
       </main>
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import Sidebar from "../../components/layout/Sidebar";
 import Navbar from "../../components/layout/Navbar";
+import MobileBottomNav from "../../components/layout/MobileBottomNav";
 
 import {
   getAnalytics,
@@ -57,21 +58,23 @@ const Analytics = () => {
 
         <Navbar />
 
-        <div className="space-y-8 p-8">
+        <div className="space-y-6 p-4 pb-24 md:p-8">
 
           <div>
 
-            <h1 className="text-4xl font-bold text-white">
+            <h1 className="text-2xl font-bold text-white md:text-4xl">
               Financial Analytics
             </h1>
 
-            <p className="mt-2 text-gray-400">
+            <p className="mt-2 text-sm text-gray-400 md:text-base">
               Track your financial performance and goals.
             </p>
 
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          {/* Stats */}
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
 
             <StatCard
               title="Income"
@@ -99,53 +102,65 @@ const Analytics = () => {
 
           </div>
 
+          {/* Charts */}
+
           <div className="grid gap-6 xl:grid-cols-2">
 
-            <IncomeExpenseChart analytics={analytics} />
+            <div className="overflow-hidden rounded-3xl bg-[#111827] p-4 md:p-6">
 
-            <CategoryPieChart analytics={analytics} />
+              <IncomeExpenseChart analytics={analytics} />
+
+            </div>
+
+            <div className="overflow-hidden rounded-3xl bg-[#111827] p-4 md:p-6">
+
+              <CategoryPieChart analytics={analytics} />
+
+            </div>
 
           </div>
 
-          <div className="rounded-3xl border border-gray-700 bg-[#111827] p-6">
+          {/* Goal Analytics */}
 
-            <h2 className="mb-6 text-2xl font-bold text-white">
+          <div className="rounded-3xl border border-gray-700 bg-[#111827] p-5 md:p-6">
+
+            <h2 className="mb-6 text-xl font-bold text-white md:text-2xl">
               🎯 Goal Analytics
             </h2>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-3">
 
-              <div className="rounded-2xl bg-[#1F2937] p-6">
+              <div className="rounded-2xl bg-[#1F2937] p-5">
 
-                <p className="text-gray-400">
+                <p className="text-sm text-gray-400">
                   Total Goals
                 </p>
 
-                <h3 className="mt-3 text-4xl font-bold text-white">
+                <h3 className="mt-3 text-3xl font-bold text-white md:text-4xl">
                   {totalGoals}
                 </h3>
 
               </div>
 
-              <div className="rounded-2xl bg-[#1F2937] p-6">
+              <div className="rounded-2xl bg-[#1F2937] p-5">
 
-                <p className="text-gray-400">
+                <p className="text-sm text-gray-400">
                   Active Goals
                 </p>
 
-                <h3 className="mt-3 text-4xl font-bold text-yellow-400">
+                <h3 className="mt-3 text-3xl font-bold text-yellow-400 md:text-4xl">
                   {activeGoals}
                 </h3>
 
               </div>
 
-              <div className="rounded-2xl bg-[#1F2937] p-6">
+              <div className="rounded-2xl bg-[#1F2937] p-5">
 
-                <p className="text-gray-400">
+                <p className="text-sm text-gray-400">
                   Completed Goals
                 </p>
 
-                <h3 className="mt-3 text-4xl font-bold text-green-400">
+                <h3 className="mt-3 text-3xl font-bold text-green-400 md:text-4xl">
                   {completedGoals}
                 </h3>
 
@@ -156,6 +171,8 @@ const Analytics = () => {
           </div>
 
         </div>
+
+        <MobileBottomNav />
 
       </main>
 

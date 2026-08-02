@@ -50,7 +50,7 @@ const menu = [
 
 const Sidebar = () => {
   return (
-    <aside className="hidden lg:flex w-72 flex-col border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
+    <aside className="hidden lg:flex w-72 shrink-0 flex-col border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950">
 
       <div className="border-b border-gray-200 dark:border-gray-800 p-6">
 

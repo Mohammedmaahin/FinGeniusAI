@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import Sidebar from "../../components/layout/Sidebar";
 import Navbar from "../../components/layout/Navbar";
+import MobileBottomNav from "../../components/layout/MobileBottomNav";
 
 import StatCard from "../../components/dashboard/StatCard";
 
@@ -13,9 +14,7 @@ import {
 
 const Dashboard = () => {
   const [score, setScore] = useState(null);
-
   const [analytics, setAnalytics] = useState(null);
-
   const [advice, setAdvice] = useState("");
 
   useEffect(() => {
@@ -32,9 +31,7 @@ const Dashboard = () => {
         ]);
 
       setScore(scoreRes.data.score);
-
       setAnalytics(analyticsRes.data.analytics);
-
       setAdvice(adviceRes.data.advice);
     } catch (err) {
       console.error(err);
@@ -50,11 +47,9 @@ const Dashboard = () => {
 
         <Navbar />
 
-        <div className="space-y-8 p-8">
+        <div className="space-y-6 p-4 pb-24 md:p-8">
 
-          {/* Cards */}
-
-          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
 
             <StatCard
               title="Financial Score"
@@ -82,25 +77,21 @@ const Dashboard = () => {
 
           </div>
 
-          {/* AI */}
+          <div className="rounded-3xl bg-white p-5 shadow-xl md:p-8 dark:bg-gray-900">
 
-          <div className="rounded-3xl bg-white p-8 shadow-xl dark:bg-gray-900">
-
-            <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-
+            <h2 className="mb-4 text-xl font-bold text-gray-900 md:text-2xl dark:text-white">
               🤖 AI Financial Coach
-
             </h2>
 
-            <p className="leading-8 text-gray-700 dark:text-gray-300">
-
+            <p className="leading-7 text-gray-700 dark:text-gray-300">
               {advice}
-
             </p>
 
           </div>
 
         </div>
+
+        <MobileBottomNav />
 
       </main>
 
