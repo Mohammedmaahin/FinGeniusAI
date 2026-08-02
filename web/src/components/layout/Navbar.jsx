@@ -19,7 +19,7 @@ const Navbar = () => {
         </p>
       </div>
 
-      <div className="flex items-center gap-3 md:gap-5">
+      <div className="flex items-center gap-4">
 
         <Link
           to="/notifications"
@@ -28,10 +28,12 @@ const Navbar = () => {
           <Bell size={24} />
         </Link>
 
-        <UserCircle
-          size={34}
-          className="text-gray-700 dark:text-gray-300"
-        />
+        <Link
+          to="/settings"
+          className="text-gray-700 transition hover:text-blue-600 dark:text-gray-300"
+        >
+          <UserCircle size={34} />
+        </Link>
 
       </div>
 
